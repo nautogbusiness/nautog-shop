@@ -37,6 +37,7 @@ exports.handler = async (event) => {
 
   // Build the Stripe request from our own price list
   const form = new URLSearchParams();
+  const summary = [];
   let n = 0;
   for (const it of items) {
     const p = PRODUCTS[it && it.id];
@@ -48,6 +49,7 @@ exports.handler = async (event) => {
     form.append(`line_items[${n}][price_data][unit_amount]`, String(p.pence));
     form.append(`line_items[${n}][price_data][product_data][name]`, p.name);
     form.append(`line_items[${n}][quantity]`, String(qty));
+    summary.push(`${qty}x ${p.name}`);
     n++;
   }
 
@@ -55,6 +57,8 @@ exports.handler = async (event) => {
   const site = (process.env.URL || "").replace(/\/$/, "");
 
   form.append("mode", "payment");
+  // Shows the order in the Description column of Stripe's payments list
+  form.append("payment_intent_data[description]", summary.join(", "));
   form.append("success_url", `${site}/#thanks`);
   form.append("cancel_url", `${site}/#shop`);
   form.append("shipping_address_collection[allowed_countries][0]", "GB");
