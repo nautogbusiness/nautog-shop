@@ -62,6 +62,9 @@ exports.handler = async (event) => {
   form.append("success_url", `${site}/#thanks`);
   form.append("cancel_url", `${site}/#shop`);
   form.append("shipping_address_collection[allowed_countries][0]", "GB");
+  // Shown above the Pay button on Stripe's page
+  form.append("custom_text[submit][message]",
+    "By paying you agree to the NAUTOG Terms of sale on our website. You can cancel within 14 days of delivery.");
   form.append("shipping_options[0][shipping_rate_data][type]", "fixed_amount");
   form.append("shipping_options[0][shipping_rate_data][display_name]", SHIPPING_NAME);
   form.append("shipping_options[0][shipping_rate_data][fixed_amount][amount]", String(SHIPPING_PENCE));
