@@ -11,7 +11,7 @@ const PRODUCTS = {
   getstuckin: { name: "Get Stuck In Circle Sticker", pence: 35 },
 };
 
-const SHIPPING_PENCE = 100;               // flat £1.00 per order
+const SHIPPING_PENCE = 99;                // flat 99p per order
 const SHIPPING_NAME = "Royal Mail 2nd Class";
 const MAX_PER_ITEM = 50;
 

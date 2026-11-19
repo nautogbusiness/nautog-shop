@@ -214,7 +214,7 @@
     <div class="wrap">
       <div class="section-head">
         <h2>The <span class="p">stickers</span></h2>
-        <p class="sub" id="shopNote">UK delivery only. Postage is £1.00 per order, however many stickers you buy.</p>
+        <p class="sub" id="shopNote">UK delivery only. Postage is 99p per order, however many stickers you buy.</p>
       </div>
       <div class="grid" id="grid"></div>
     </div>
@@ -222,7 +222,7 @@
 
   <section id="info" style="padding-top:0">
     <div class="wrap info">
-      <div><h4>UK delivery, £1 max</h4><p>Sent by Royal Mail 2nd Class to UK addresses only. Postage is £1.00 per order, whatever the size.</p></div>
+      <div><h4>UK delivery, 99p</h4><p>Sent by Royal Mail 2nd Class to UK addresses only. Postage is 99p per order, whatever the size.</p></div>
       <div><h4>Secure checkout</h4><p id="payInfo">Pay with PayPal or by card through Stripe. You'll get an email receipt as soon as you pay.</p></div>
       <div><h4>14-day returns</h4><p>Changed your mind? You can cancel within 14 days of delivery. Faulty or damaged? We'll replace it. <a href="legal.html#returns" style="color:#ff7be8">Returns policy</a></p></div>
     </div>
@@ -317,7 +317,7 @@ const CONFIG = {
   // netlify/functions/checkout.js. Your Stripe key lives in Netlify, not here.
   // Optional: add your PayPal email to also offer PayPal. Blank = Stripe only.
   paypalEmail: "",
-  shipping: 1.00,          // flat postage per order, in GBP
+  shipping: 0.99,          // flat postage per order, in GBP (also change SHIPPING_PENCE in checkout.js)
   currency: "GBP"
 };
 
