@@ -9,8 +9,23 @@ window.SITE_INFO = {
   address: "",                            // a real UK postal address (not a PO Box)
   email: "nautog.business@gmail.com",     // email customers can contact you on
   dispatchDays: "3 working days",         // how soon you post orders
-  lastUpdated: "18 November 2026"
+  lastUpdated: "20 November 2026",
+
+  // Visitor stats (free, no cookies): paste your Cloudflare Web Analytics
+  // token here to switch them on. Leave blank to turn them off.
+  cloudflareToken: "7b903d46c14f4d0091f7011c825cfe35"
 };
+
+/* Loads Cloudflare Web Analytics only when a token is set */
+(function () {
+  var t = window.SITE_INFO.cloudflareToken;
+  if (!t) return;
+  var sc = document.createElement("script");
+  sc.defer = true;
+  sc.src = "https://static.cloudflareinsights.com/beacon.min.js";
+  sc.setAttribute("data-cf-beacon", JSON.stringify({ token: t }));
+  document.head.appendChild(sc);
+})();
 
 /* Fills in any element with data-info="..." on the page */
 (function () {

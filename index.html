@@ -4,7 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NAUTOG Shop</title>
-<meta name="description" content="Official NAUTOG stickers. Car culture, project builds and getting stuck in.">
+<meta name="description" content="Official NAUTOG stickers from the automotive YouTube channel. UK delivery, 99p postage per order.">
+<link rel="canonical" href="https://nautog-shop.netlify.app/">
+<meta name="theme-color" content="#0E0E10">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NAUTOG Shop">
+<meta property="og:title" content="NAUTOG Shop - official stickers">
+<meta property="og:description" content="Stick it on the project car. Official NAUTOG stickers from 35p, UK delivery 99p per order.">
+<meta property="og:url" content="https://nautog-shop.netlify.app/">
+<meta property="og:image" content="https://nautog-shop.netlify.app/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="NAUTOG logo sticker and Get Stuck In sticker">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NAUTOG Shop - official stickers">
+<meta name="twitter:description" content="Stick it on the project car. Official NAUTOG stickers from 35p, UK delivery 99p per order.">
+<meta name="twitter:image" content="https://nautog-shop.netlify.app/images/og-image.jpg">
 <link rel="icon" href="images/nautog-logo-sticker.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,9 +84,9 @@
   /* Products */
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
-  .card-img{position:relative;width:100%;border:0;cursor:zoom-in;aspect-ratio:4/3;display:grid;place-items:center;padding:28px;background:
+  .card-img{position:relative;width:100%;border:0;cursor:zoom-in;aspect-ratio:4/3;overflow:hidden;display:grid;place-items:center;padding:28px;background:
       radial-gradient(circle at 50% 40%,#2a2a33,#18181d 70%)}
-  .card-img img,.card-img svg{max-height:100%;width:auto;max-width:100%;filter:drop-shadow(0 10px 16px rgba(0,0,0,.55));transition:transform .25s}
+  .card-img img,.card-img svg{position:absolute;inset:28px;width:calc(100% - 56px)!important;height:calc(100% - 56px);max-width:none;object-fit:contain;width:auto;max-width:100%;filter:drop-shadow(0 10px 16px rgba(0,0,0,.55));transition:transform .25s}
   .card:hover .card-img img,.card:hover .card-img svg{transform:rotate(-3deg) scale(1.03)}
   .more{position:absolute;right:12px;bottom:12px;background:rgba(0,0,0,.65);color:#fff;font:600 13px "Barlow";padding:4px 10px;border-radius:999px}
   /* Gallery / lightbox */
@@ -113,6 +128,14 @@
   .agree{font-size:13px;color:var(--muted);text-align:center}
   .agree a{color:var(--text)}
   .size{font-size:15px;color:var(--text);font-weight:600}
+  .save{font-size:15px;color:#7CF29A;font-weight:700}
+  .soldout{font:800 17px "Barlow Condensed";text-transform:uppercase;letter-spacing:.06em;color:var(--muted);border:2px solid var(--line);border-radius:10px;padding:9px 14px}
+  .card.is-soldout .card-img img{filter:grayscale(1) opacity(.55)}
+  .upsell{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;background:rgba(229,52,200,.1);border:1px dashed rgba(229,52,200,.5);border-radius:12px;padding:10px 12px}
+  .upsell img{width:44px;height:44px;object-fit:contain}
+  .upsell b{display:block;font:800 16px "Barlow Condensed";text-transform:uppercase;letter-spacing:.02em}
+  .upsell small{color:var(--muted);font-size:13px;line-height:1.35;display:block}
+  .upsell .btn{padding:9px 14px;font-size:15px;box-shadow:3px 3px 0 var(--pink)}
   .card-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:10px;flex:1}
   .card h3{font:800 24px "Barlow Condensed";text-transform:uppercase;letter-spacing:.02em;line-height:1.1}
   .card p{color:var(--muted);font-size:16px}
@@ -317,33 +340,9 @@ const CONFIG = {
   // netlify/functions/checkout.js. Your Stripe key lives in Netlify, not here.
   // Optional: add your PayPal email to also offer PayPal. Blank = Stripe only.
   paypalEmail: "",
-  shipping: 0.99,          // flat postage per order, in GBP (also change SHIPPING_PENCE in checkout.js)
   currency: "GBP"
 };
-
-const PRODUCTS = [
-  {
-    id: "logo",
-    name: "NAUTOG Logo Sticker",
-    price: 1.00,
-    blurb: "The full NAUTOG logo on a chequered flag. Vinyl sticker for the car, the toolbox or the laptop.",
-    size: "approx. 75 x 25 mm",
-    tag: "Bestseller",
-    img: "images/nautog-logo-sticker.webp",
-    photos: ["images/nautog-logo-sticker.webp","images/logo-window-closeup.jpg","images/sticker-pile.jpg","images/tt-quarter.jpg"]
-  },
-  {
-    id: "getstuckin",
-    name: "Get Stuck In Circle Sticker",
-    price: 0.35,
-    blurb: "Round vinyl sticker of an oily hand gripping a spanner, with a NAUTOG flag at the bottom. For anyone who doesn't wait for a mechanic.",
-    size: "50 mm diameter",
-    tag: "Pocket money",
-    img: "images/get-stuck-in.webp",
-    photos: ["images/get-stuck-in.webp","images/get-stuck-in-bottle.jpg"]
-  }
-];
-// If you change a price here, change it in netlify/functions/checkout.js too.
+// Products, prices, postage and sold-out status live in products.json.
 /* ========================================================= */
 
 const fmt = n => "£" + n.toFixed(2);
@@ -355,23 +354,29 @@ const art = p => `<img src="${p.img}" alt="${p.name}">`;
 let cart = {};
 try { cart = JSON.parse(localStorage.getItem("nautog-cart") || "{}") || {}; } catch(e) { cart = {}; }
 const save = () => { try { localStorage.setItem("nautog-cart", JSON.stringify(cart)); } catch(e){} };
-const pending = {}; PRODUCTS.forEach(p => pending[p.id] = 1);
+let PRODUCTS = [];
+let SHIPPING = 0.99;
+const pending = {};
+const byId = id => PRODUCTS.find(p => p.id === id);
+const soldOut = p => p.soldOut || (p.contains ? Object.keys(p.contains).some(id => !byId(id) || byId(id).soldOut) : false);
+const singlesValue = p => p.contains ? Object.entries(p.contains).reduce((s,[id,q]) => s + (byId(id) ? byId(id).price * q : 0), 0) : 0;
 
 function renderGrid(){
   $("#grid").innerHTML = PRODUCTS.map(p => `
-    <article class="card">
+    <article class="card${soldOut(p) ? " is-soldout" : ""}">
       <button class="card-img" data-gal="${p.id}" aria-label="View photos of ${p.name}">${art(p)}<span class="more">${p.photos.length} photos</span></button>
       <div class="card-body">
         ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
         <h3>${p.name}</h3>
         <p>${p.blurb}</p>
         ${p.size ? `<p class="size">Size: ${p.size}</p>` : ""}
+        ${p.contains && singlesValue(p) > p.price ? `<p class="save">Save ${pence(singlesValue(p) - p.price)} on buying them separately</p>` : ""}
         <div class="card-foot">
           <span class="price">${fmt(p.price)}</span>
-          <div style="display:flex;gap:10px;align-items:center">
+          ${soldOut(p) ? `<span class="soldout">Sold out</span>` : `<div style="display:flex;gap:10px;align-items:center">
             <div class="qty"><button data-dec="${p.id}" aria-label="Less">&minus;</button><span id="pq-${p.id}">${pending[p.id]}</span><button data-inc="${p.id}" aria-label="More">+</button></div>
             <button class="btn btn-yellow add" data-add="${p.id}">Add</button>
-          </div>
+          </div>`}
         </div>
       </div>
     </article>`).join("");
@@ -381,13 +386,13 @@ function totals(){
   const items = PRODUCTS.filter(p => cart[p.id] > 0);
   const sub = items.reduce((s,p) => s + p.price * cart[p.id], 0);
   const qty = items.reduce((s,p) => s + cart[p.id], 0);
-  const ship = qty ? CONFIG.shipping : 0;
+  const ship = qty ? SHIPPING : 0;
   return { items, sub, ship, total: sub + ship, qty };
 }
 
 function paypalUrl(t){
   const q = new URLSearchParams({ cmd:"_cart", upload:"1", business:CONFIG.paypalEmail,
-    currency_code:CONFIG.currency, handling_cart:CONFIG.shipping.toFixed(2), no_shipping:"2",
+    currency_code:CONFIG.currency, handling_cart:SHIPPING.toFixed(2), no_shipping:"2",
     return: location.href.split("#")[0] + "#thanks" });
   t.items.forEach((p,i) => {
     q.set("item_name_"+(i+1), p.name);
@@ -412,6 +417,8 @@ function renderCart(){
     <div class="row total"><span>Total</span><span>${fmt(t.total)}</span></div>` : "";
 
   let html = "";
+  const up = suggestion();
+  if (up) html += `<div class="upsell"><img src="${up.img}" alt=""><div><b>Add a ${up.name}?</b><small>${fmt(up.price)}. Postage stays ${pence(SHIPPING)}, however many you add.</small></div><button class="btn btn-yellow" data-up="${up.id}">Add</button></div>`;
   if (t.items.length) {
     html += `<button class="btn btn-yellow" id="checkoutBtn">Checkout &middot; ${fmt(t.total)}</button>`;
     if (CONFIG.paypalEmail) html += `<a class="btn btn-paypal" href="${paypalUrl(t)}">Pay with PayPal</a>`;
@@ -421,6 +428,16 @@ function renderCart(){
   }
   $("#pay").innerHTML = html;
 }
+
+// Suggest a single sticker that isn't in the basket yet (and isn't in a pack already in it)
+function suggestion(){
+  const inCart = PRODUCTS.filter(p => cart[p.id] > 0);
+  if (!inCart.length) return null;
+  const covered = new Set();
+  inCart.forEach(p => { covered.add(p.id); if (p.contains) Object.keys(p.contains).forEach(id => covered.add(id)); });
+  return PRODUCTS.find(p => !p.contains && !covered.has(p.id) && !soldOut(p)) || null;
+}
+function pence(n){ return n < 1 ? Math.round(n*100) + "p" : fmt(n); }
 
 function toast(msg){ const el=$("#toast"); el.textContent=msg; el.classList.add("show"); clearTimeout(toast.t); toast.t=setTimeout(()=>el.classList.remove("show"),1600); }
 const open = () => document.body.classList.add("open");
@@ -432,6 +449,7 @@ document.addEventListener("click", e => {
   if (d.inc) { pending[d.inc] = Math.min(50, pending[d.inc]+1); $("#pq-"+d.inc).textContent = pending[d.inc]; }
   if (d.dec) { pending[d.dec] = Math.max(1, pending[d.dec]-1); $("#pq-"+d.dec).textContent = pending[d.dec]; }
   if (d.add) { cart[d.add] = Math.min(50,(cart[d.add]||0) + pending[d.add]); save(); renderCart(); toast("Added to basket"); }
+  if (d.up) { cart[d.up] = (cart[d.up]||0) + 1; save(); renderCart(); toast("Added to basket"); }
   if (d.cinc) { cart[d.cinc] = Math.min(50, cart[d.cinc]+1); save(); renderCart(); }
   if (b.id === "checkoutBtn") checkout(b);
   if (d.cdec) { cart[d.cdec]--; if (cart[d.cdec] <= 0) delete cart[d.cdec]; save(); renderCart(); }
@@ -487,8 +505,24 @@ document.addEventListener("click", e => {
 });
 
 $("#yr").textContent = new Date().getFullYear();
-if (!CONFIG.paypalEmail) $("#payInfo").textContent = "Pay securely by card through Stripe. You'll get an email receipt as soon as you pay."; 
-renderGrid(); renderCart(); checkThanks();
+if (!CONFIG.paypalEmail) $("#payInfo").textContent = "Pay securely by card through Stripe. You'll get an email receipt as soon as you pay.";
+async function init(){
+  try {
+    const r = await fetch("products.json", { cache: "no-cache" });
+    const data = await r.json();
+    SHIPPING = data.shippingPence / 100;
+    PRODUCTS = data.products.map(p => ({ ...p, price: p.pence / 100 }));
+  } catch (e) {
+    $("#grid").innerHTML = `<p class="sub">The shop couldn't load. Please refresh the page.</p>`;
+    return;
+  }
+  PRODUCTS.forEach(p => pending[p.id] = 1);
+  // Drop anything that no longer exists or has sold out since it was added
+  Object.keys(cart).forEach(id => { const p = byId(id); if (!p || soldOut(p)) delete cart[id]; });
+  save();
+  renderGrid(); renderCart(); checkThanks();
+}
+init();
 </script>
 </body>
 </html>

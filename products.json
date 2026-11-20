@@ -1,0 +1,55 @@
+{
+  "_help": "The shop's product list. The website and the Stripe checkout both read this file, so prices only need changing here. Prices are in pence (100 = £1.00). Set soldOut to true to pause a product.",
+  "shippingPence": 99,
+  "products": [
+    {
+      "id": "logo",
+      "name": "NAUTOG Logo Sticker",
+      "pence": 100,
+      "soldOut": false,
+      "blurb": "The full NAUTOG logo on a chequered flag. Vinyl sticker for the car, the toolbox or the laptop.",
+      "size": "approx. 75 x 25 mm",
+      "tag": "Bestseller",
+      "img": "images/nautog-logo-sticker.webp",
+      "photos": [
+        "images/nautog-logo-sticker.webp",
+        "images/logo-window-closeup.jpg",
+        "images/sticker-pile.jpg",
+        "images/tt-quarter.jpg"
+      ]
+    },
+    {
+      "id": "getstuckin",
+      "name": "Get Stuck In Circle Sticker",
+      "pence": 35,
+      "soldOut": false,
+      "blurb": "Round vinyl sticker of an oily hand gripping a spanner, with a NAUTOG flag at the bottom. For anyone who doesn't wait for a mechanic.",
+      "size": "50 mm diameter",
+      "tag": "Pocket money",
+      "img": "images/get-stuck-in.webp",
+      "photos": [
+        "images/get-stuck-in.webp",
+        "images/get-stuck-in-bottle.jpg"
+      ]
+    },
+    {
+      "id": "pack",
+      "name": "Sticker Pack (3 of each)",
+      "pence": 300,
+      "soldOut": false,
+      "contains": {
+        "logo": 3,
+        "getstuckin": 3
+      },
+      "blurb": "Three NAUTOG Logo Stickers and three Get Stuck In Circle Stickers. Enough for the car, the toolbox, the laptop and a few spare for your mates.",
+      "size": "",
+      "tag": "Best value",
+      "img": "images/sticker-pack.webp",
+      "photos": [
+        "images/sticker-pack.webp",
+        "images/nautog-logo-sticker.webp",
+        "images/get-stuck-in.webp"
+      ]
+    }
+  ]
+}
